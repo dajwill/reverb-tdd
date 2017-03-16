@@ -3,21 +3,21 @@ class TagParser
     @tags = tags.split(',')
   end
 
-  def make
+  def parse type
     @tags.each do |tag|
-      return tag.split(':')[1].strip if tag.include? 'make:'
+      return tag.split(':')[1].strip if tag.include? "#{type}:"
     end
+  end
+
+  def make
+    parse "make"
   end
 
   def model
-    @tags.each do |tag|
-      return tag.split(':')[1].strip if tag.include? 'model:'
-    end
+    parse "model"
   end
 
   def condition
-    @tags.each do |tag|
-      return tag.split(':')[1].strip if tag.include? 'condition:'
-    end
+    parse "condition"
   end
 end
